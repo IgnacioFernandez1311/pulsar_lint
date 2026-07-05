@@ -1,0 +1,22 @@
+name: pulsar_lint
+description: Official linter for the Pulsar Web Framework. Enforces architectural best practices — clarity over cleverness.
+version: 0.1.0
+homepage: https://pulsar-web.netlify.app
+repository: https://github.com/IgnacioFernandez1311/pulsar_lint
+
+topics:
+  - linter
+  - web
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  analyzer: ^8.4.0
+  custom_lint: ^0.8.1
+  custom_lint_builder: ^0.8.1
+  test: ^1.31.1
+  # path: ^1.9.0
+
+dev_dependencies:
+  lints: ^6.0.0
