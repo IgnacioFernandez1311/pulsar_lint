@@ -59,7 +59,7 @@ class ComponentsMustBeFields extends DartLintRule {
   @override
   void run(
     CustomLintResolver resolver,
-    ErrorReporter reporter,
+    DiagnosticReporter reporter,
     CustomLintContext context,
   ) {
     context.registry.addVariableDeclarationStatement((node) {
@@ -88,7 +88,7 @@ class ComponentsMustBeFields extends DartLintRule {
   }
 
   String _typeName(dynamic type) {
-    if (type is dynamic && type.element != null) {
+    if (type.element != null) {
       return (type.element as dynamic).name as String? ?? type.toString();
     }
     return type.toString();
