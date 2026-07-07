@@ -13,28 +13,28 @@
 
 include: package:lints/recommended.yaml
 
-
 analyzer:
   plugins:
     - custom_lint
- 
+
 custom_lint:
   rules:
-    # ── Domain Boundary ────────────────────────────────────────────────────
-    # Prevents business logic and data transformations inside render().
-    # render() must be a pure description of the UI — nothing more.
+    # ── Architecture ───────────────────────────────────────────────────────
+    # render() must be pure — no data transformations inside
     - no_logic_in_render: true
- 
-    # ── Identity Preservation ──────────────────────────────────────────────
-    # Pulsar components are long-lived objects. Creating them inline in
-    # render() destroys their identity on every morph.
+
+    # Components created inline lose identity on every morph
     - no_inline_component_creation: true
- 
-    # Warns when a Component is stored as a local variable instead of a field.
-    # Local variables are recreated on every method call, breaking identity.
+
+    # Components stored as local variables lose identity on every call
     - components_must_be_fields: true
- 
-    # ── State Management ───────────────────────────────────────────────────
-    # morph() inside onInput fires on every keystroke — expensive and
-    # causes focus/cursor issues. Use onBlur or onChange instead.
+
+    # morph() inside onInput re-renders on every keystroke
     - no_morph_in_on_input: true
+
+    # ── ElementBuilder usage ───────────────────────────────────────────────
+    # Void elements (Input, Img, Br, etc.) cannot receive children
+    - void_element_with_children: true
+
+    # Every ElementBuilder must be finalized with call() to produce a Morphic node
+    - element_builder_missing_call: true
